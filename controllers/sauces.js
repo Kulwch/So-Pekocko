@@ -8,18 +8,8 @@ exports.createSauce = (req, res, next) => {
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     });
     sauce.save()
-        .then(() => {
-            res.status(201).json({
-                message: 'Post saved successfully!'
-            });
-        }
-        ).catch(
-            (error) => {
-                res.status(400).json({
-                    error: error
-                });
-            }
-        );
+        .then(() => res.status(201).json({ message: 'Sauce créée !'}))
+        .catch((error) => res.status(400).json({ error }))
 };
 
 exports.modifySauce = (req, res, next) => {
@@ -46,34 +36,18 @@ exports.deleteSauce = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));
 };
 
-exports.getAllSauces = (req, res, next) => {
+exports.getAllSauce = (req, res, next) => {
     Sauce.find().
-        then(
-            (sauces) => {
-                res.status(200).json(sauces);
-            }
-        )
-        .catch(
-            (error) => {
-                res.status(400).json({
-                    error: error
-                });
-            }
-        );
-};
+        then((sauces) => res.status(200).json(sauces))
+        .catch((error) => res.status(400).json({ error })
+)};
 
 exports.getOneSauce = (req, res, next) => {
     Sauce.findOne({
         _id: req.params.id
-    }).then(
-        (sauce) => {
-            res.status(200).json(sauce);
-        }
-    ).catch(
-        (error) => {
-            res.status(404).json({
-                error: error
-            });
-        }
-    );
+    })
+    .then(
+        (sauce) => res.status(200).json(sauce))
+    .catch((error) => 
+            res.status(404).json({ error }))        
 };

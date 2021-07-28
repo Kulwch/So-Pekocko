@@ -1,3 +1,11 @@
+/**
+ * Auth - middleware:
+ * Used to ensure authentication on api/sauce/ requests so that only registered users can access data
+ * 
+ * package jsonwebtoken is used to generate a token, that is compared to the userId. If match, user's request is allowed.
+ * 
+ */
+
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {

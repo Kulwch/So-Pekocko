@@ -1,3 +1,10 @@
+/**
+ * Multer-config - middleware
+ * 
+ * Package multer is used to manage the images files: save, modify, delete
+ * 
+ */
+
 const multer = require('multer');
 
 const MIME_TYPES = {
