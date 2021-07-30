@@ -1,8 +1,8 @@
 const express = require('express');
-
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
+const helmet = require('helmet');
 
 const sauceRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
@@ -17,6 +17,8 @@ mongoose.connect('mongodb+srv://Kulwch:JuDeSo858618!@cluster0.7hkp3.mongodb.net/
 
 
 const app = express();
+
+app.use(helmet());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
