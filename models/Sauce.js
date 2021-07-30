@@ -34,6 +34,6 @@ const sauceSchema = mongoose.Schema({
     usersDisliked: { type:[String], default: [] }
 });
 
-sauceSchema.plugin(sanitizer, options);
+sauceSchema.plugin(sanitizer);
 
 module.exports = mongoose.model( 'Sauce', sauceSchema);
