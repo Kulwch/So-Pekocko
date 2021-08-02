@@ -1,7 +1,7 @@
 /**
  * Multer-config - middleware
  * 
- * Package multer is used to manage the images files: save, modify, delete
+ * Package multer is used to manage the images files: save, modify, delete in the images folder
  * 
  */
 

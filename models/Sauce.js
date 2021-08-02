@@ -13,8 +13,11 @@
         @key {number} heat 
         @key {number} likes 
         @key {number} dislikes
-        @key {array} usersLiked
-        @key {array} usersDisliked
+        @key {array of string} usersLiked
+        @key {array of string} usersDisliked
+*
+* mongoose-sanitiez is used to protect from injections and ensure users input allowed html
+*
  */
 
 const mongoose = require('mongoose');

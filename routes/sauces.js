@@ -1,3 +1,9 @@
+/**
+ * sauce routes
+ * 
+ * Sets paths for requests regarding the sauce object
+ */
+
 const express = require('express');
 const router = express.Router();
 

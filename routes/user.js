@@ -1,3 +1,9 @@
+/**
+ * user routes
+ * 
+ * Sets paths for requests regarding the user object
+ */
+
 const express = require('express');
 const router = express.Router();
 
