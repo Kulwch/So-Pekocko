@@ -10,8 +10,9 @@ const router = express.Router();
 const userCtrl = require('../controllers/user');
 
 const accountLimiter = require('../middleware/accountLimiter');
+const passwordVerify = require('../middleware/passwordVerify');
 
-router.post('/signup',  userCtrl.signup);
+router.post('/signup', passwordVerify, userCtrl.signup);
 router.post('/login', accountLimiter, userCtrl.login);
 
 module.exports = router;

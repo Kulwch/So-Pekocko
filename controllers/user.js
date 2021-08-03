@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * user controller
  * 
@@ -8,6 +9,7 @@
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const CryptoJS = require('crypto-js');
 const User = require('../models/User');
 
 /**
@@ -16,15 +18,24 @@ const User = require('../models/User');
     * @param {*} res 
     * @param {*} next 
  * 
- * First hashes the req.body.password, then uses a ten rounds salt on it. Hash is stored with the mail on database
+ * First a key and iv are set, then the req.body.email is crypted using key and iv (those are later used to re-set the exact encryption to find user) via use of @CryptoJS .
+ * Then req.body.password is hashed with a ten rounds salt added with @bcrypt .
+ * The user is saved on database with the cryptedEmail and the hash.
  */
 
 exports.signup = (req, res, next) => {
-        
+
+let key = "6Le0DgMTAyAbUNokdEEial"; 
+let iv  = "ThoRsAyShelikesLow.key"; 
+            
+key = CryptoJS.enc.Base64.parse(key); 
+iv = CryptoJS.enc.Base64.parse(iv);
+let cryptedEmail = CryptoJS.AES.encrypt(req.body.email, key, { iv: iv }).toString();
+
      bcrypt.hash(req.body.password, 10)
     .then(hash => {
         const user = new User({ 
-            email: req.body.email,
+            email: cryptedEmail,
             password: hash
         });
         user.save()
@@ -41,15 +52,20 @@ exports.signup = (req, res, next) => {
     * @param {*} res 
     * @param {*} next 
     * 
-    * First searches in the database for user with same email adress than req.body.email
-    * then if match, compare the crypted password with @bcrypt function compare to determine if the req.body.password has the same string origin
-    * If ok, creates a Token, valid within 24 hours using @jsonwebtoken (userId, secret phrase or Key)
-    * 
+    * Req.body.email is encrypted the same way than in the signup function. Then, the cryptedEmail is used to find the user in the mongo database.
+    * If password if correct (use of @bcrypt compare function), token is created for auth requests that will be needed on sauce routes.
  */
 exports.login = (req, res, next) => {
 
-  User.findOne({ email: req.body.email })
-    .then(user=> {
+let key = "6Le0DgMTAyAbUNokdEEial"; 
+let iv  = "ThoRsAyShelikesLow.key"; 
+            
+key = CryptoJS.enc.Base64.parse(key); 
+iv = CryptoJS.enc.Base64.parse(iv);
+let cryptedEmail = CryptoJS.AES.encrypt(req.body.email, key, { iv: iv }).toString();
+    
+  User.findOne({ email: cryptedEmail } )
+    .then(user => {
         if(!user) {
             return res.status(401).json({message: 'Utilisateur non trouvé '});
         }

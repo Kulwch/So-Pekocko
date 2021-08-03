@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Auth - middleware:
  * Used to ensure authentication on api/sauce/ requests so that only registered users can access data
