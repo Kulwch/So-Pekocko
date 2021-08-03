@@ -1,13 +1,41 @@
+// @ts-nocheck
+/**
+ * user controller
+ * 
+ * Contains business logic that is applied with the routes
+ * 
+ * Model and necessary plugin first imported with require('') before code
+ */
+
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const CryptoJS = require('crypto-js');
 const User = require('../models/User');
 
+/**
+ * @function signup
+    * @param {*} req 
+    * @param {*} res 
+    * @param {*} next 
+ * 
+ * First a key and iv are set, then the req.body.email is crypted using key and iv (those are later used to re-set the exact encryption to find user) via use of @CryptoJS .
+ * Then req.body.password is hashed with a ten rounds salt added with @bcrypt .
+ * The user is saved on database with the cryptedEmail and the hash.
+ */
+
 exports.signup = (req, res, next) => {
-    bcrypt.hash(req.body.password, 10)
+
+let key = "6Le0DgMTAyAbUNokdEEial"; 
+let iv  = "ThoRsAyShelikesLow.key"; 
+            
+key = CryptoJS.enc.Base64.parse(key); 
+iv = CryptoJS.enc.Base64.parse(iv);
+let cryptedEmail = CryptoJS.AES.encrypt(req.body.email, key, { iv: iv }).toString();
+
+     bcrypt.hash(req.body.password, 10)
     .then(hash => {
         const user = new User({ 
-            email: req.body.email,
+            email: cryptedEmail,
             password: hash
         });
         user.save()
@@ -15,10 +43,28 @@ exports.signup = (req, res, next) => {
             .catch( error => res.status(400).json({ error }))
     })
     .catch(error => res.status(500).json({ error }))
+    
 };
 
+/**
+ * @function login
+    * @param {*} req 
+    * @param {*} res 
+    * @param {*} next 
+    * 
+    * Req.body.email is encrypted the same way than in the signup function. Then, the cryptedEmail is used to find the user in the mongo database.
+    * If password if correct (use of @bcrypt compare function), token is created for auth requests that will be needed on sauce routes.
+ */
 exports.login = (req, res, next) => {
-    User.findOne({ email: req.body.email })
+
+let key = "6Le0DgMTAyAbUNokdEEial"; 
+let iv  = "ThoRsAyShelikesLow.key"; 
+            
+key = CryptoJS.enc.Base64.parse(key); 
+iv = CryptoJS.enc.Base64.parse(iv);
+let cryptedEmail = CryptoJS.AES.encrypt(req.body.email, key, { iv: iv }).toString();
+    
+  User.findOne({ email: cryptedEmail } )
     .then(user => {
         if(!user) {
             return res.status(401).json({message: 'Utilisateur non trouvé '});
@@ -33,7 +79,7 @@ exports.login = (req, res, next) => {
                     userId: user._id,
                     token: jwt.sign(
                         { userId: user._id },
-                        'RANDOM_TOKEN_SECRET',
+                        'RANDOM_TOKEN_SO_SECRET_THAT_ITS_SECRET_IS_ALSO_A_SECRET',
                         { expiresIn: '24h' }
                     )
                 });                
