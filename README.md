@@ -11,7 +11,7 @@ To respect the mission's specifications, the API must be secure, respect OWASP's
 
 ### 1° Install the frontend 
 
-- A - First step: Clone this repository
+- A - First step: Clone this repository: https://github.com/OpenClassrooms-Student-Center/dwj-projet6
 
 - B - Then, open a terminal in your editor and get to the frontend folder
 
