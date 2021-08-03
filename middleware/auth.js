@@ -3,7 +3,7 @@
  * Auth - middleware:
  * Used to ensure authentication on api/sauce/ requests so that only registered users can access data
  * 
- * jsonwebtoken is used to compare the bearer Token of the request with the userId. If match, user's request is allowed.
+ * @jsonwebtoken is used to compare the bearer Token of the request with the userId. If match, user's request is allowed.
  * 
  */
 

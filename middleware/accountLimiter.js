@@ -2,6 +2,7 @@
  * accountLimiter - middleware
  * 
  * Blocks connections attempts after 5 requests within the same hour. Prevents from brute-force attacks.
+ * Set with @express-rate-limit
  */
 
 const rateLimit = require("express-rate-limit");

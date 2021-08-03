@@ -2,6 +2,8 @@
  * user routes
  * 
  * Sets paths for requests regarding the user object
+ * @accountLimiter is used on login to prevent from brute force attack
+ * @passwordVerify checks for password's strength and match with model (/models/password.js)
  */
 
 const express = require('express');

@@ -1,3 +1,8 @@
+/**
+ * passwordVerify
+ * @middleware to ensure the strength of password
+ */
+
 const passwordSchema = require('../models/password');
 
 module.exports = (req, res, next) => {

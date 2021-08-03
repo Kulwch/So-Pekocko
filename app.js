@@ -1,3 +1,12 @@
+/**
+ * app.js
+ * Applications settings
+ * Imports necessary plugins first, like @mongoose (error handling for mongodb) or @helmet (prevents from arbitrary code injections).
+ * Estalishes the connection between the database and the application.
+ * Sets which routes and models are to be used. 
+ * Provides with the headers for each request that will be made to the API.
+ */
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -20,7 +29,6 @@ mongoose.connect('mongodb+srv://Kulwch:JuDeSo858618!@cluster0.7hkp3.mongodb.net/
 const app = express();
 
 app.use(helmet());
-
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');

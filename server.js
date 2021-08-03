@@ -1,5 +1,9 @@
 /**
  * server settings
+ * 
+ * Defines construction of the server, and its parameters.
+ * 
+ * Default port used is 3000 yet if problem, terminal will indicate which other port would be used.
  */
 
 const http = require('http');
