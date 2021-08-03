@@ -1,5 +1,5 @@
 /**
- * Password Validator
+ * @passwordValidator
  * 
  * installed via npm
  * 

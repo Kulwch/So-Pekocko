@@ -5,7 +5,7 @@
  * two keys required: 
  * @constructor
     * @key {string} email - 
-    * @key {string} password - unique - password is validated by passwordValidator (password.js)
+    * @key {string} password - unique - password is validated by passwordVerify (middleware).
  * 
  * Mongoose unique validator is used to ensure the same email cannot be used twice or more to create different user accounts
  * 

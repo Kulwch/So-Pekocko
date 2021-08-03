@@ -4,7 +4,7 @@
  * 
  * Contains business logic that is applied with the routes
  * 
- * Model and necessary plugin first imported with require('') before code
+ * Models and necessary plugin first imported with require('') before code
  */
 
 const bcrypt = require('bcrypt');
@@ -53,7 +53,7 @@ let cryptedEmail = CryptoJS.AES.encrypt(req.body.email, key, { iv: iv }).toStrin
     * @param {*} next 
     * 
     * Req.body.email is encrypted the same way than in the signup function. Then, the cryptedEmail is used to find the user in the mongo database.
-    * If password if correct (use of @bcrypt compare function), token is created for auth requests that will be needed on sauce routes.
+    * If password if correct (use of @bcrypt compare function), token is created by @jsonwebtoken for auth requests that will be needed on sauce routes.
  */
 exports.login = (req, res, next) => {
 

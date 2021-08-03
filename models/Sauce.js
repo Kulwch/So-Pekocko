@@ -17,7 +17,7 @@
         @key {array of string} usersLiked
         @key {array of string} usersDisliked
 *
-* mongoose-sanitiez is used to protect from injections and ensure users input allowed html
+* mongoose-sanitize is used to protect from injections and ensure users input allowed html
 *
  */
 
