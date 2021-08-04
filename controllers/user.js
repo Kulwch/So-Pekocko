@@ -11,6 +11,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const CryptoJS = require('crypto-js');
 const User = require('../models/User');
+const dotenv = require('dotenv').config();
 
 /**
  * @function signup
@@ -25,8 +26,8 @@ const User = require('../models/User');
 
 exports.signup = (req, res, next) => {
 
-let key = "6Le0DgMTAyAbUNokdEEial"; 
-let iv  = "ThoRsAyShelikesLow.key"; 
+let key = process.env.KEY.toString(); 
+let iv  = process.env.IV.toString(); 
             
 key = CryptoJS.enc.Base64.parse(key); 
 iv = CryptoJS.enc.Base64.parse(iv);
@@ -57,8 +58,8 @@ let cryptedEmail = CryptoJS.AES.encrypt(req.body.email, key, { iv: iv }).toStrin
  */
 exports.login = (req, res, next) => {
 
-let key = "6Le0DgMTAyAbUNokdEEial"; 
-let iv  = "ThoRsAyShelikesLow.key"; 
+let key = process.env.KEY.toString(); 
+let iv  = process.env.IV.toString(); 
             
 key = CryptoJS.enc.Base64.parse(key); 
 iv = CryptoJS.enc.Base64.parse(iv);

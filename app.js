@@ -12,13 +12,14 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 const helmet = require('helmet');
+const dotenv = require('dotenv').config();
 
 const sauceRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
 const User = require('./models/User');
 const Sauce = require('./models/Sauce');
 
-mongoose.connect('mongodb+srv://Kulwch:JuDeSo858618!@cluster0.7hkp3.mongodb.net/test?retryWrites=true&w=majority',
+mongoose.connect(process.env.MONGOOSE_CONNECT.toString(),
   { useNewUrlParser: true,
     useUnifiedTopology: true,
   })
