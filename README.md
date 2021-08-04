@@ -27,7 +27,7 @@ To respect the mission's specifications, the API must be secure, respect OWASP's
         
 ### 2° Install the backend 
 
-- A - Open a terminal in the backend folder
+- A - Clone the present repository and open a terminal in the backend folder
 
 - B - Install nodemon server (reloads itself unlike node): 'npm install -g nodemon'
 
