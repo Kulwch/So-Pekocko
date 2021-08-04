@@ -11,27 +11,29 @@ To respect the mission's specifications, the API must be secure, respect OWASP's
 
 ### 1° Install the frontend 
 
-- A - First step: Clone this repository: https://github.com/OpenClassrooms-Student-Center/dwj-projet6
+- A - First step: Clone this repository: https://github.com/OpenClassrooms-Student-Center/dwj-projet6 .
 
-- B - Then, open a terminal in your editor and get to the frontend folder
+- B - Then, open a terminal in your editor and get to the frontend folder.
 
-- C - Install all dependencies with npm: 'npm install'
+- C - Install all dependencies with npm: 'npm install' .
 
-- D - If you don't have it on your computer, install node-sass: 'npm install node-sass'
+- D - If you don't have it on your computer, install node-sass: 'npm install node-sass' .
 
-- E - Project has been developed on Angular CLI 7.0.2 - 
+- E - Project has been developed on Angular CLI 7.0.2 - which is old - don't install angular or update it if you want to run the application.
 
-- F - On terminal again, launch development server with 'npm start': you will get to http://localhost:4200
+- F - On terminal again, launch development server with 'npm start': you will get to http://localhost:4200 .
 
     Application will automatically reload if you modify a source file.
         
 ### 2° Install the backend 
 
-- A - Clone the present repository and open a terminal in the backend folder
+- A - Clone the present repository and open a terminal in the backend folder.
 
-- B - Install nodemon server (reloads itself unlike node): 'npm install -g nodemon'
+- B - Install nodemon server (reloads itself unlike node): 'npm install -g nodemon' .
 
-- C - Launch server: 'nodemon serve', starts on port 3000 or if impossible, the terminal will notify which other port is used
+- C - Place the dotenv file (.env) you have been sent in the root of backend folder.
+
+- D - Launch server: 'nodemon serve', starts on port 3000 or if impossible, the terminal will notify which other port is used.
 
 ### 3° Test the application
 
