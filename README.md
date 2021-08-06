@@ -17,7 +17,7 @@ To respect the mission's specifications, the API must be secure, respect OWASP's
 
 - C - Install all dependencies with npm: 'npm install' .
 
-- D - If you don't have it on your computer, install node-sass: 'npm install node-sass' .
+- D - If you don't have it yet, install node-sass: 'npm install node-sass' .
 
 - E - Project has been developed on Angular CLI 7.0.2 - which is old - don't install angular or update it if you want to run the application.
 
